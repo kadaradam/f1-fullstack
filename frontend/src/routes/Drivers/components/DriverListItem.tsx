@@ -34,7 +34,7 @@ export const DriverListItem = ({ item }: DriverListItemProps) => {
 				borderColor: 'white.main',
 				borderWidth: 1,
 				borderStyle: 'solid',
-				backgroundColor: colors.cyan[500],
+				backgroundColor: '#4e7e92',
 				// DndKit props
 				transform: CSS.Transform.toString(transform),
 				transition,

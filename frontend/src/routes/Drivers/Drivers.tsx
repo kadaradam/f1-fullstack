@@ -16,11 +16,11 @@ const Drivers = () => {
 	const isDriversLoading = isLoading && !drivers;
 
 	return (
-		<Container>
+		<Container sx={{ bgcolor: '#2a4e53', pb: 4 }}>
 			<Typography variant="h4" pt={4}>
 				Formula 1 Competitors
 			</Typography>
-			<Box mt={3} p={4} sx={{ backgroundColor: colors.grey[700] }}>
+			<Box mt={3}>
 				{isDriversLoading ? (
 					<Skeleton sx={{ flexGrow: 1 }}>
 						<Typography variant="h6">2 drivers</Typography>
