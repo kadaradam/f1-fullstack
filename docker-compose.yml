@@ -1,10 +1,25 @@
 version: '3.9'
 services:
+    postgres:
+        image: postgres:15.2
+        container_name: postgres
+        hostname: postgres
+        ports:
+            - 5432:5432
+        environment:
+            POSTGRES_USER: johndoe
+            POSTGRES_PASSWORD: randompassword
+            POSTGRES_DB: mydb
+        volumes:
+            - postgres-data:/var/lib/postgresql/data
+        restart: unless-stopped
+
     f1-fullstack:
         stdin_open: true
         environment:
             - NODE_ENV=production
             - PORT=3000
+            - DATABASE_URL=postgresql://johndoe:randompassword@postgres:5432/mydb?schema=public
         build:
             context: .
             dockerfile: Dockerfile
@@ -12,3 +27,6 @@ services:
         ports:
             - '3000:3000'
         restart: always
+
+volumes:
+    postgres-data:
