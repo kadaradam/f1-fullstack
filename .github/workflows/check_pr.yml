@@ -1,0 +1,36 @@
+name: Lint Pull Request
+
+on: pull_request
+
+jobs:
+    lint_pr:
+        runs-on: ubuntu-latest
+
+        steps:
+            # Checkout
+            - uses: actions/checkout@v2
+
+            # Install pnpm
+            - name: Install specific pnpm
+              uses: pnpm/action-setup@v2
+              with:
+                  version: '8.1.0'
+
+            # Node Install
+            - name: Use Node.js
+              uses: actions/setup-node@v2
+              with:
+                  node-version: '18.13.0'
+                  cache: 'pnpm'
+
+            # pnpm Install
+            - name: Install dependencies
+              run: pnpm install
+
+            # pnpm Lint
+            - name: Lint source files
+              run: pnpm run lint
+
+            # pnpm Prettier check
+            - name: Run prettier check
+              run: pnpm run format:check
