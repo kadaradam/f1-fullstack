@@ -2,7 +2,6 @@ import Container from '@mui/material/Container';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Skeleton from '@mui/material/Skeleton';
-import { colors } from '@mui/material';
 import { useQuery } from '@tanstack/react-query';
 import { getDriversApi } from '../../react-query/api';
 import ListDrivers from './components/ListDrivers';
