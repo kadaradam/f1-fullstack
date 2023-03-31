@@ -68,8 +68,12 @@ const ListDrivers = ({ drivers }: ListDriversProps) => {
 				items={driverIds}
 				strategy={verticalListSortingStrategy}
 			>
-				{drivers.map((driver) => (
-					<DriverListItem key={driver.id} item={driver} />
+				{drivers.map((driver, index) => (
+					<DriverListItem
+						key={driver.id}
+						item={driver}
+						index={index}
+					/>
 				))}
 			</SortableContext>
 		</DndContext>

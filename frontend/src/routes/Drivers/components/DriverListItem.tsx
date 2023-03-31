@@ -13,9 +13,10 @@ import dragIndicatorSvg from '/drag_indicator.svg';
 
 type DriverListItemProps = {
 	item: Driver;
+	index: number;
 };
 
-export const DriverListItem = ({ item }: DriverListItemProps) => {
+export const DriverListItem = ({ item, index }: DriverListItemProps) => {
 	const { attributes, listeners, setNodeRef, transform, transition } =
 		useSortable({
 			id: item.id,
@@ -56,7 +57,7 @@ export const DriverListItem = ({ item }: DriverListItemProps) => {
 						width={32}
 					/>
 					<Typography variant="h5" color={colors.pink[800]} pl={2}>
-						{item.place}
+						{index + 1}
 					</Typography>
 				</Grid>
 				<Grid item xs={3} display="flex" alignItems="center">
