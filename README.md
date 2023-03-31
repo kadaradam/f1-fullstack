@@ -26,6 +26,12 @@ Copy .env.example and create a new .env file
 
 Set your postgres DB url `DATABASE_URL`in the .env
 
+Migrate the database
+
+```bash
+npx prisma migrate deploy
+```
+
 Seed your db
 
 ```bash
