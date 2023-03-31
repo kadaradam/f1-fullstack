@@ -16,12 +16,12 @@ export const DriverListHeader = ({ isLoading }: { isLoading: boolean }) => {
 		>
 			<Grid container>
 				<Grid item xs={1} />
-				<Grid item xs={3}>
+				<Grid item xs={2}>
 					<Typography variant="caption">
 						{isLoading ? <Skeleton width={100} /> : 'Name'}
 					</Typography>
 				</Grid>
-				<Grid item xs={2}>
+				<Grid item xs={3}>
 					<Typography variant="caption">
 						{isLoading ? <Skeleton width={100} /> : 'Team'}
 					</Typography>
