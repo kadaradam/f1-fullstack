@@ -14,6 +14,24 @@ Install dependencies:
 pnpm install
 ```
 
+Genetate prisma client
+
+```bash
+npx prisma generate
+```
+
+Go to the backend directory
+
+Copy .env.example and create a new .env file
+
+Set your postgres DB url `DATABASE_URL`in the .env
+
+Seed your db
+
+```bash
+npx prisma db seed
+```
+
 ## Run in development mode
 
 Run the fullstack application in development mode:

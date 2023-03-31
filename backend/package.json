@@ -11,6 +11,9 @@
 		"format:check": "prettier --check src",
 		"lint": "eslint src"
 	},
+	"prisma": {
+		"seed": "ts-node prisma/seed.ts"
+	},
 	"license": "ISC",
 	"devDependencies": {
 		"@types/body-parser": "^1.19.2",
