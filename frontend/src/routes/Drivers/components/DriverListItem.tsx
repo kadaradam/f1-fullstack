@@ -5,6 +5,7 @@ import { colors } from '@mui/material';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import OvertakeButton from './OvertakeButton';
+import { constructFlagUrl } from '../../../utils';
 
 type DriverListItemProps = {
 	item: Driver;
@@ -26,8 +27,13 @@ export const DriverListItem = ({ item }: DriverListItemProps) => {
 			}}
 		>
 			<Grid container alignItems="center">
-				<Grid item xs={1}>
-					<Typography variant="h5" color={colors.pink[800]}>
+				<Grid item xs={1} display="flex" alignItems="center">
+					<img
+						src={constructFlagUrl(item.country)}
+						alt={item.country}
+						width={32}
+					/>
+					<Typography variant="h5" color={colors.pink[800]} pl={2}>
 						{item.place}
 					</Typography>
 				</Grid>
