@@ -1,5 +1,6 @@
 import { Router, Request, Response } from 'express';
 import { Controller } from '../../interfaces';
+import { driversState } from '../../services/drivers-state.service';
 
 export class DriversController implements Controller {
 	public router = Router();
@@ -9,6 +10,28 @@ export class DriversController implements Controller {
 	}
 
 	private overtake(req: Request, res: Response) {
-		res.send({ success: true });
+		try {
+			const { driverId } = req.params;
+
+			if (!driverId) {
+				res.status(400).json({
+					success: false,
+					error: 'Missing "driverId" param.',
+				});
+				return;
+			}
+
+			const driverIdInt = parseInt(driverId);
+
+			const success = driversState.overtake(driverIdInt);
+
+			res.send({ success });
+		} catch (err) {
+			console.error(err);
+			res.status(500).json({
+				success: false,
+				error: 'Unable to overtake driver.',
+			});
+		}
 	}
 }
