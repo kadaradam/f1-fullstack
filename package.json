@@ -1,0 +1,22 @@
+{
+	"name": "digital-thinking",
+	"version": "1.0.0",
+	"description": "",
+	"private": true,
+	"scripts": {
+		"start": "pnpm --parallel --stream -r run start",
+		"start:prod": "pnpm --stream -r start:prod",
+		"build": "pnpm --stream -r run build",
+		"clean": "pnpm -r run clean",
+		"format": "pnpm -r run format",
+		"format:check": "pnpm -r run format:check",
+		"lint": "pnpm -r run lint"
+	},
+	"keywords": [],
+	"author": "Adam Kadar <contact@kadaradam.dev>",
+	"license": "ISC",
+	"engines": {
+		"node": ">=18.0.0",
+		"yarn": ">=1.22.12"
+	}
+}
