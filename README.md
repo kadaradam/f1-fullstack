@@ -14,13 +14,13 @@ Install dependencies:
 pnpm install
 ```
 
+Go to the backend directory
+
 Genetate prisma client
 
 ```bash
 npx prisma generate
 ```
-
-Go to the backend directory
 
 Copy .env.example and create a new .env file
 
