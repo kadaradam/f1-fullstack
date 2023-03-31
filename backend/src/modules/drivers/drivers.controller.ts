@@ -13,8 +13,9 @@ export class DriversController implements Controller {
 	private drivers(req: Request, res: Response) {
 		try {
 			const drivers = driversState.getDrivers();
+			const sortedDrivers = drivers.sort((a, b) => a.place - b.place);
 
-			res.send({ success: true, data: drivers });
+			res.send({ success: true, data: sortedDrivers });
 		} catch (err) {
 			console.error(err);
 			res.status(500).json({
