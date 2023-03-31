@@ -10,6 +10,11 @@ export default defineConfig({
 				changeOrigin: true,
 				rewrite: (path) => path.replace(/^\/api/, ''),
 			},
+			'/static': {
+				target: 'http://[::]:3000/static',
+				changeOrigin: true,
+				rewrite: (path) => path.replace(/^\/static/, ''),
+			},
 		},
 	},
 	plugins: [react()],
