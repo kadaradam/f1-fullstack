@@ -6,6 +6,8 @@ import { config as dotenvConfig } from 'dotenv';
 dotenvConfig();
 import { config } from './config';
 import { join } from 'path';
+import { driversRouter } from './modules';
+import { GLOBAL_API_PREFIX } from './constants';
 
 const app = express();
 const port = config.PORT;
@@ -16,10 +18,12 @@ app.use(morgan(process.env.NODE_ENV === 'production' ? 'combined' : 'dev'));
 
 // Server static assets
 app.use('/static', express.static(join(__dirname, '..', 'public', 'static')));
-
 if (process.env.NODE_ENV === 'production') {
 	app.use(express.static(join(__dirname, '..', '..', 'frontend', 'dist')));
 }
+
+// Routes
+app.use(GLOBAL_API_PREFIX, [driversRouter]);
 
 app.listen(port, () => {
 	console.log(`API is running on port ${port}. `);
