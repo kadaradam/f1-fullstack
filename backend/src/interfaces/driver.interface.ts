@@ -61,4 +61,6 @@ export interface Driver {
 	lastname: string;
 	country: DriverCountry;
 	team: DriverTeam;
+	place: number;
+	imgUrl: string;
 }
