@@ -1,6 +1,9 @@
 import { Router, Request, Response } from 'express';
-import { Controller } from '../../interfaces';
+import { Controller, CustomRequest } from '../../interfaces';
 import { driversState } from '../../services/drivers-state.service';
+import { OvertakeOptions } from '../../services/manage-drivers.service';
+
+type OvertakeDto = { step?: number };
 
 export class DriversController implements Controller {
 	public router = Router();
@@ -25,9 +28,10 @@ export class DriversController implements Controller {
 		}
 	}
 
-	private overtake(req: Request, res: Response) {
+	private overtake(req: CustomRequest<OvertakeDto>, res: Response) {
 		try {
 			const { driverId } = req.params;
+			const { step } = req.body;
 
 			if (!driverId) {
 				res.status(400).json({
@@ -37,9 +41,13 @@ export class DriversController implements Controller {
 				return;
 			}
 
+			const overtakeOptions: OvertakeOptions = step
+				? { step }
+				: undefined;
+
 			const driverIdInt = parseInt(driverId);
 
-			const success = driversState.overtake(driverIdInt);
+			const success = driversState.overtake(driverIdInt, overtakeOptions);
 
 			res.send({ success });
 		} catch (err) {

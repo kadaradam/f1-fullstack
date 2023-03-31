@@ -1,5 +1,11 @@
 import { Driver } from 'types';
 
+export type OvertakeOptions =
+	| {
+			step?: number;
+	  }
+	| undefined;
+
 class ManageDriversService {
 	private drivers: Driver[];
 
@@ -11,7 +17,10 @@ class ManageDriversService {
 		return this.drivers;
 	}
 
-	public overtake(driverId: number): boolean {
+	public overtake(
+		driverId: number,
+		{ step = 1 }: OvertakeOptions = { step: 1 },
+	): boolean {
 		const driverIndex = this.drivers.findIndex(
 			(racer) => racer.id === driverId,
 		);
@@ -21,7 +30,7 @@ class ManageDriversService {
 		}
 
 		const currentPos = this.drivers[driverIndex].place;
-		const frontDriver = this.drivers[driverIndex - 1];
+		const frontDriver = this.drivers[driverIndex - step];
 
 		if (!frontDriver) {
 			return false;

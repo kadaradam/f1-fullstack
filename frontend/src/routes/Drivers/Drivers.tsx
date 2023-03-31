@@ -9,10 +9,11 @@ import ListDrivers from './components/ListDrivers';
 import { DriverListHeader } from './components/DriverListHeader';
 
 const Drivers = () => {
-	const { data: drivers, isLoading: isDriversLoading } = useQuery(
-		['drivers'],
-		() => getDriversApi(),
+	const { data: drivers, isLoading } = useQuery(['drivers'], () =>
+		getDriversApi(),
 	);
+
+	const isDriversLoading = isLoading && !drivers;
 
 	return (
 		<Container>
@@ -22,19 +23,19 @@ const Drivers = () => {
 			<Box mt={3} p={4} sx={{ backgroundColor: colors.grey[700] }}>
 				{isDriversLoading ? (
 					<Skeleton sx={{ flexGrow: 1 }}>
-						<Typography variant="h6">2 projects</Typography>
+						<Typography variant="h6">2 drivers</Typography>
 					</Skeleton>
 				) : (
 					<Box display="flex" alignItems="center">
 						<Typography variant="h6" sx={{ flexGrow: 1 }}>
-							{drivers?.data.length} drivers
+							{drivers?.length} drivers
 						</Typography>
 					</Box>
 				)}
 			</Box>
 			<Box pt={2}>
 				<DriverListHeader isLoading={isDriversLoading} />
-				{drivers?.data ? <ListDrivers drivers={drivers.data} /> : null}
+				{drivers ? <ListDrivers drivers={drivers} /> : null}
 			</Box>
 		</Container>
 	);

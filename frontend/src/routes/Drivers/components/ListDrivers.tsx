@@ -11,11 +11,14 @@ import {
 	restrictToVerticalAxis,
 } from '@dnd-kit/modifiers';
 import {
+	arrayMove,
 	SortableContext,
 	verticalListSortingStrategy,
 } from '@dnd-kit/sortable';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { useMemo } from 'react';
 import { Driver } from 'types';
+import { postOvertakeApi } from '../../../react-query/api/post-overtake.api';
 import { DriverListItem } from './DriverListItem';
 
 type ListDriversProps = {
@@ -23,9 +26,12 @@ type ListDriversProps = {
 };
 
 const ListDrivers = ({ drivers }: ListDriversProps) => {
+	const queryClient = useQueryClient();
 	const sensors = useSensors(useSensor(PointerSensor));
 
-	const projectIds = useMemo(
+	const { mutate: overtakeFront } = useMutation(postOvertakeApi);
+
+	const driverIds = useMemo(
 		() => drivers.map((driver) => driver.id),
 		[drivers],
 	);
@@ -34,7 +40,20 @@ const ListDrivers = ({ drivers }: ListDriversProps) => {
 		const { active, over } = event;
 
 		if (over && active.id !== over?.id) {
-			console.log('moved');
+			const oldIndex = drivers.findIndex((item) => item.id === active.id);
+			const newIndex = drivers.findIndex((item) => item.id === over.id);
+
+			const stepCount = oldIndex - newIndex;
+
+			// Update overtakes only
+			if (stepCount > 0) {
+				const driverId = drivers[oldIndex].id;
+				const updatedDrivers = arrayMove(drivers, oldIndex, newIndex);
+
+				// Perform an optimistic update
+				queryClient.setQueryData(['drivers'], updatedDrivers);
+				overtakeFront({ driverId, step: stepCount });
+			}
 		}
 	}
 
@@ -46,7 +65,7 @@ const ListDrivers = ({ drivers }: ListDriversProps) => {
 			onDragEnd={handleDragEnd}
 		>
 			<SortableContext
-				items={projectIds}
+				items={driverIds}
 				strategy={verticalListSortingStrategy}
 			>
 				{drivers.map((driver) => (
