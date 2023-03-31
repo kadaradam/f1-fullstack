@@ -1,0 +1,16 @@
+Dockerfile
+docker*.yml
+
+.git
+.gitignore
+.config
+
+.npm
+.vscode
+node_modules
+
+.env
+.env.example
+.prettierrc
+
+README.md
