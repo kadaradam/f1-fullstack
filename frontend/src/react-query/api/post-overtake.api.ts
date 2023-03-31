@@ -9,7 +9,7 @@ type PostOvertakeApi = ({
 
 export const postOvertakeApi: PostOvertakeApi = async ({ driverId }) => {
 	const { data } = await axiosService.post<PostOvertakeApiResponse>(
-		`/api/drivers/${driverId}/overtake`,
+		`/drivers/${driverId}/overtake`,
 	);
 
 	return data;
