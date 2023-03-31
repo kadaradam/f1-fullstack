@@ -8,6 +8,7 @@ import { config } from './config';
 import { join } from 'path';
 import { driversRouter } from './modules';
 import { GLOBAL_API_PREFIX } from './constants';
+import { flagImgProxyRouter } from './modules/flag-img-proxy/flag-img-proxy.router';
 
 const app = express();
 const port = config.PORT;
@@ -24,6 +25,9 @@ if (process.env.NODE_ENV === 'production') {
 
 // Routes
 app.use(GLOBAL_API_PREFIX, [driversRouter]);
+
+// Image proxy
+app.use(flagImgProxyRouter);
 
 app.listen(port, () => {
 	console.log(`API is running on port ${port}. `);

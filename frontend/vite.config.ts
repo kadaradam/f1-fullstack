@@ -15,6 +15,11 @@ export default defineConfig({
 				changeOrigin: true,
 				rewrite: (path) => path.replace(/^\/static/, ''),
 			},
+			'/image': {
+				target: 'http://[::]:3000/image',
+				changeOrigin: true,
+				rewrite: (path) => path.replace(/^\/image/, ''),
+			},
 		},
 	},
 	plugins: [react()],
