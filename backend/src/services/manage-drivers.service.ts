@@ -21,9 +21,7 @@ class ManageDriversService {
 		}
 
 		const currentPos = this.drivers[driverIndex].place;
-		const frontDriver = this.drivers.find(
-			(racer) => racer.place < currentPos,
-		);
+		const frontDriver = this.drivers[driverIndex - 1];
 
 		if (!frontDriver) {
 			return false;
