@@ -1,1 +1,1 @@
-export type Test = string;
+export * from './Driver.type';

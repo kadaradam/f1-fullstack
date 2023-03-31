@@ -1,6 +1,6 @@
 import driversJson from './../data/drivers.json';
 import { z } from 'zod';
-import { Driver } from '../interfaces';
+import { Driver } from 'types';
 import { ManageDriversService } from './manage-drivers.service';
 
 const driverJsonSchema = z

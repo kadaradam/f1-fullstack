@@ -54,7 +54,7 @@ export type DriverTeam =
 	| 'Red Bull Racing'
 	| 'Mercedes';
 
-export interface Driver {
+export type Driver = {
 	id: number;
 	code: DriverCode;
 	firstname: string;
@@ -63,4 +63,4 @@ export interface Driver {
 	team: DriverTeam;
 	place: number;
 	imgUrl: string;
-}
+};

@@ -1,4 +1,4 @@
-import { Driver } from '../interfaces';
+import { Driver } from 'types';
 
 class ManageDriversService {
 	private drivers: Driver[];

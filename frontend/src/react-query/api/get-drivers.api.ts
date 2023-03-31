@@ -1,7 +1,7 @@
+import { Driver } from 'types';
 import { axiosService } from '../../axiosService';
 
-// TODO: shared package
-type GetDriversApiResponse = { success: boolean; data: any };
+type GetDriversApiResponse = { success: boolean; data: Driver[] };
 type GetDriversApi = () => Promise<GetDriversApiResponse>;
 
 export const getDriversApi: GetDriversApi = async () => {
