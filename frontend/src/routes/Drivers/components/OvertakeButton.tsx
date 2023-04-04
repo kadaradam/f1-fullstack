@@ -4,9 +4,15 @@ import { postOvertakeApi } from '../../../react-query/api/post-overtake.api';
 
 type OvertakeButtonProps = {
 	driverId: number;
+	frontFirstName: string;
+	disabled?: boolean;
 };
 
-const OvertakeButton = ({ driverId }: OvertakeButtonProps) => {
+const OvertakeButton = ({
+	driverId,
+	disabled,
+	frontFirstName,
+}: OvertakeButtonProps) => {
 	const queryClient = useQueryClient();
 
 	const { mutate: overtakeFront, isLoading: isLoading } = useMutation(
@@ -25,8 +31,9 @@ const OvertakeButton = ({ driverId }: OvertakeButtonProps) => {
 			variant="contained"
 			onClick={() => overtakeFront({ driverId })}
 			loading={isLoading}
+			disabled={disabled}
 		>
-			Overtake
+			Overtake {frontFirstName}
 		</LoadingButton>
 	);
 };

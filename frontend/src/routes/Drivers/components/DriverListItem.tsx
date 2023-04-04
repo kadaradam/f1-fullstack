@@ -14,9 +14,14 @@ import dragIndicatorSvg from '/drag_indicator.svg';
 type DriverListItemProps = {
 	item: Driver;
 	index: number;
+	frontFirstName: string;
 };
 
-export const DriverListItem = ({ item, index }: DriverListItemProps) => {
+export const DriverListItem = ({
+	item,
+	index,
+	frontFirstName,
+}: DriverListItemProps) => {
 	const { attributes, listeners, setNodeRef, transform, transition } =
 		useSortable({
 			id: item.id,
@@ -77,7 +82,11 @@ export const DriverListItem = ({ item, index }: DriverListItemProps) => {
 					alignItems="center"
 					justifyContent="space-between"
 				>
-					<OvertakeButton driverId={item.id} />
+					<OvertakeButton
+						driverId={item.id}
+						disabled={index === 0}
+						frontFirstName={frontFirstName}
+					/>
 				</Grid>
 			</Grid>
 		</Box>

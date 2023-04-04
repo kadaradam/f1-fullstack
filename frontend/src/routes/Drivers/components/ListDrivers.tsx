@@ -73,6 +73,7 @@ const ListDrivers = ({ drivers }: ListDriversProps) => {
 						key={driver.id}
 						item={driver}
 						index={index}
+						frontFirstName={drivers[index - 1]?.firstname}
 					/>
 				))}
 			</SortableContext>
