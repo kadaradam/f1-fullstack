@@ -6,7 +6,7 @@
 		"start": "nodemon",
 		"start:prod": "node dist/app.js",
 		"build": "tsc --incremental",
-		"clean": "rm -rf ./dist",
+		"clean": "rm -rf ./dist ./node_modules tsconfig.tsbuildinfo",
 		"format": "prettier --write src",
 		"format:check": "prettier --check src",
 		"lint": "eslint src",

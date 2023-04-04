@@ -7,7 +7,7 @@
 		"start": "vite",
 		"start:prod": "echo \"Frontend is served from the backend\"",
 		"build": "tsc && vite build",
-		"clean": "rm -rf ./dist",
+		"clean": "rm -rf ./dist ./node_modules tsconfig.tsbuildinfo",
 		"preview": "vite preview",
 		"format": "prettier --write src",
 		"format:check": "prettier --check src",
