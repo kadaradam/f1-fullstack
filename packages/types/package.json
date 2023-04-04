@@ -6,7 +6,7 @@
 	"scripts": {
 		"start": "tsc -w --incremental",
 		"build": "tsc --incremental",
-		"clean": "rm -rf ./dist"
+		"clean": "rm -rf ./dist ./node_modules tsconfig.tsbuildinfo"
 	},
 	"keywords": [],
 	"author": "",
