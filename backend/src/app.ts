@@ -12,7 +12,7 @@ import { flagImgProxyRouter } from './modules/flag-img-proxy/flag-img-proxy.rout
 
 const app = express();
 const port = config.PORT;
-const isProduction = process.env.NODE_ENV !== 'production';
+const isProduction = process.env.NODE_ENV === 'production';
 
 // Middlewares
 app.use(bodyParserJson());
